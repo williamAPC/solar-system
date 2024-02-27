@@ -28,10 +28,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup NodeJS Version - ${{ matrix.nodejs_version }}
+      - name: Setup NodeJS Version - 18
         uses: actions/setup-node@v4
         with:
-         node-version: ${{ matrix.nodejs_version }}
+         node-version: ${{ matrix.nodejs_version}}
 
       - name: Install Dependencies
         run: npm install
@@ -42,6 +42,6 @@ jobs:
       - name: Archive Test Result
         uses: actions/upload-artifact@v4
         with:
-            name: Mocha-Test-Result
-            path: test-results-${{ matrix.nodejs_version }}-on-${{ matrix.operating_system }}.xml
+            name: Mocha-Test -${{ matrix.operating_system }}-${{ matrix.nodejs_version}}-Result
+            path: test-results.xml
 
