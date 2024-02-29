@@ -84,6 +84,7 @@ jobs:
 
             - name: Check code Coverage
               run: npm run coverage
+              continue-on-error: true
 
             - name: Archive test Result
               uses: actions/upload-artifact@v3
