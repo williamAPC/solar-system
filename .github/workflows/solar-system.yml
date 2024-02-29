@@ -12,6 +12,7 @@ env:
     MONGO_URI: 'mongodb+srv://supercluster.d83jj.mongodb.net/superData'
     MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
     MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+    REPO_OWNER: $(echo 'console.log("${{ github.repository_owner }}".toLowerCase())' | node -)
 
 jobs:
     unit-testing:
@@ -139,13 +140,16 @@ jobs:
 
              
         - name: Container registriesPush
+        
+        
           uses: docker/Build-push-action@v4
           with:
                context: .
                push: true
                tags: |
                  ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
-                 ghcr.io/${{ github.repository_owner.lowercase }}/solar-system:${{ github.sha }}
+                 ghcr.io/$REPO_OWNER/solar-system:${{ github.sha }}
+      # ghcr.io/${{ github.repository_owner.lowercase }}/solar-system:${{ github.sha }}
     
 
     # aws-ecr-login:
