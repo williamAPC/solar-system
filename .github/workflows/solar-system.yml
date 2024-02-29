@@ -96,6 +96,8 @@ jobs:
     dockerhub-Login:
       name: login in dockerHub
       needs: [unit-testing, code-coverage]
+      permissions: 
+        packages: write
       runs-on: ubuntu-latest
       steps:
         - name: Chekhout Repo
@@ -106,6 +108,13 @@ jobs:
           with:
             username: ${{ vars.DOCKERHUB_USERNAME }}
             password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+        - name: GHCR Login
+          uses: docker/login-action@v2.2.0
+          with:
+              registry: ghcr.io
+              username: ${{ github.repository_owner}}
+              password: ${{ secrets.GITHUB_TOKEN }}
 
         - name: Docker Build for Testing
           uses: docker/Build-push-action@v4
@@ -129,12 +138,14 @@ jobs:
             #  echo $IP
 
              
-        - name: Docker Push
+        - name: Container registriesPush
           uses: docker/Build-push-action@v4
           with:
                context: .
                push: true
-               tags: ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
+               tags: |
+                 ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
+                 ghcr.io/${{ github.repository_owner }}/solar-system:${{ github.sha }}
     
 
     # aws-ecr-login:
