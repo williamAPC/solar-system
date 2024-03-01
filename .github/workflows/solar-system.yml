@@ -168,7 +168,7 @@ jobs:
         - name: Lowercase Repository-owner
           run: |
              repowner=$(echo 'console.log("${{ github.repository_owner }}".toLowerCase())' | node -)
-             echo $repowner >> 
+             echo $repowner
 
 
         - name: Container registriesPush
