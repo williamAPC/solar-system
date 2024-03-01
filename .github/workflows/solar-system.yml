@@ -42,6 +42,8 @@ jobs:
                   operating_system: ubuntu-latest
                 - nodejs_version: 20
                   operating_system: macos-latest
+                - nodejs_version: 20
+                  operating_system: ubuntu-latest
       runs-on: ${{ matrix.operating_system }}
       steps:
       - name: Checkout Repository
@@ -164,7 +166,9 @@ jobs:
             #  echo $IP
              
         - name: Lowercase Repository-owner
-          run: repowner=$(echo 'console.log("${{ github.repository_owner }}".toLowerCase())' | node -)
+          run: |
+             repowner=$(echo 'console.log("${{ github.repository_owner }}".toLowerCase())' | node -)
+             echo $repowner
 
 
         - name: Container registriesPush
@@ -174,7 +178,7 @@ jobs:
                push: true
                tags: |
                  ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
-                 ghcr.io/$repowner/solar-system:${{ github.sha }}
+                 ghcr.io/williamapc/solar-system:${{ github.sha }}
       # ghcr.io/${{ github.repository_owner.lowercase }}/solar-system:${{ github.sha }}
     
 
