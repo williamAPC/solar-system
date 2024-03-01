@@ -19,7 +19,7 @@ jobs:
       name: Unit testing
       services:
         mongo-db:
-          image: siddharth67/mongodb:non-prod
+          image: siddharth67/mongo-db:non-prod
           ports: 
             - 27017:27017
 
