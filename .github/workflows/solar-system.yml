@@ -55,10 +55,10 @@ jobs:
          node-version: ${{ matrix.nodejs_version}}
 
       - name: Cache NPM dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@v3
         with:
-          path: node_modules
-          key: ${{ runner.os }}_node-modules-${{ hashFiles('package-lock.json') }}
+          path: ~/.npm
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
 
       - name: Install Dependencies
         run: npm install
@@ -168,7 +168,7 @@ jobs:
         - name: Lowercase Repository-owner
           run: |
              repowner=$(echo 'console.log("${{ github.repository_owner }}".toLowerCase())' | node -)
-             echo $repowner
+             echo $repowner >> 
 
 
         - name: Container registriesPush
@@ -178,7 +178,7 @@ jobs:
                push: true
                tags: |
                  ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
-                 ghcr.io/williamapc/solar-system:${{ github.sha }}
+                 ghcr.io/${{ repowner }}/solar-system:${{ github.sha }}
       # ghcr.io/${{ github.repository_owner.lowercase }}/solar-system:${{ github.sha }}
     
 
