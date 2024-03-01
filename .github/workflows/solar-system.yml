@@ -164,7 +164,7 @@ jobs:
             #  echo $IP
              
         - name: Lowercase Repository-owner
-          run: $(echo 'console.log("${{ github.repository_owner }}".toLowerCase())' | node -)
+          run: echo 'console.log("${{ github.repository_owner }}".toLowerCase())' | node -
 
 
         - name: Container registriesPush
