@@ -165,9 +165,9 @@ jobs:
             #  export IP=$(docker inspect -f '{{ range .Networksettings.Networks}}{{.IPAddress}}{{end}}' solar-system-app)
             #  echo $IP
              
-        - name: Lowercase Repository-owner
+        - name: Lowercase Repository-owner as a environnement variable
           run: |
-             repowner=$(echo 'console.log("${{ github.repository_owner }}".toLowerCase())' | node -) >> $GITHUB_ENV
+             repowner=$(echo 'console.log("${{ github.repository_owner }}".toLowerCase())' | node -) >> "$GITHUB_ENV"
              echo $repowner
 
 
@@ -178,7 +178,7 @@ jobs:
                push: true
                tags: |
                  ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
-                 ghcr.io/$repowner/solar-system:${{ github.sha }}
+                 ghcr.io/"$repowner"/solar-system:${{ github.sha }}
       # ghcr.io/${{ github.repository_owner.lowercase }}/solar-system:${{ github.sha }}
       
     
