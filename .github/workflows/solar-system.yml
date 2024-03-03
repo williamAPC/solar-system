@@ -165,11 +165,16 @@ jobs:
             #  export IP=$(docker inspect -f '{{ range .Networksettings.Networks}}{{.IPAddress}}{{end}}' solar-system-app)
             #  echo $IP
              
-        - name: Lowercase Repository-owner as a environnement variable
+        # - name: Lowercase Repository-owner as a environnement variable
+        #   run: |
+        #      echo "repowner=${github.repository_owner}.toLowerCase()" >> "$GITHUB_ENV"
+        #      echo $repowner
+        #      echo $GITHUB_ENV
+
+        - name: downcase REPO
           run: |
-             echo "repowner=${github.repository_owner}.toLowerCase()" >> "$GITHUB_ENV"
-             echo $repowner
-             echo $GITHUB_ENV
+             echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
+             echo "The value of REPO is: ${REPO}"
 
 
         - name: Container registriesPush
