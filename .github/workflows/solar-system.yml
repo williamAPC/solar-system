@@ -167,7 +167,7 @@ jobs:
              
         - name: Lowercase Repository-owner as a environnement variable
           run: |
-             echo "repowner=${{ github.repository_owner }}.toLowerCase()" >> "$GITHUB_ENV"
+             echo "repowner=${github.repository_owner}.toLowerCase()" >> "$GITHUB_ENV"
              echo $repowner
              echo $GITHUB_ENV
 
