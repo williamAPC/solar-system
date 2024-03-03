@@ -173,7 +173,7 @@ jobs:
 
         - name: downcase REPO
           run: | 
-               echo REPO=$('print("${{ github.repository_owner}}".lower())' | python3 -) >> $GITHUB_ENV
+               echo REPO=$(echo 'print("${{ github.repository_owner}}".lower())' | python3 -) >> $GITHUB_ENV
                echo $REPO
                echo ${{ env.REPO }}
                echo ${{ github.repository_owner }}
