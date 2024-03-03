@@ -173,8 +173,9 @@ jobs:
 
         - name: downcase REPO
           run: |
-             echo REPO=${GITHUB_REPOSITORY,,} >>${GITHUB_ENV}
-             echo The value of REPO is: ${REPO}
+             echo REPO=${GITHUB_REPOSITORY,,} >> $GITHUB_ENV
+             echo The value of REPO is: $REPO
+             echo The value of REPO is: $GITHUB_ENV
 
 
       #   - name: Container registriesPush
