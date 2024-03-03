@@ -185,9 +185,8 @@ jobs:
                context: .
                push: true
                tags: |
-                 ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
-                 REPO=$(echo 'print("${{ github.repository_owner}}".lower())' | python3 -) >> 
-                 tags: ghcr.io/${{ env.REPO }}:${{ github.sha }}
+                 # ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
+                 ghcr.io/${{ env.REPO }}:${{ github.sha }}
       # ghcr.io/${{ github.repository_owner.lowercase }}/solar-system:${{ github.sha }}
       
     
