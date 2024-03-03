@@ -173,7 +173,7 @@ jobs:
 
         - name: downcase REPO
           run: | 
-               repo=$(echo 'console.log("${{ github.repository_owner }}".toLowerCase())' | node -)
+               echo "repo"='console.log("${{ github.repository_owner }}".toLowerCase())' | node -)
                echo $repo
                echo ${{ github.repository_owner }}
           
