@@ -173,8 +173,8 @@ jobs:
 
         - name: downcase REPO
           run: | 
-               echo "repo=console.log('${{ github.repository_owner }}.toLowerCase())' | node -)"
-               echo $repo
+               REPO=$(echo 'print("${{ github.repository_owner}}".lower())' | python3 -) >> $GITHUB_ENV
+               echo $REPO
                echo ${{ github.repository_owner }}
           
 
@@ -186,8 +186,8 @@ jobs:
                push: true
                tags: |
                  ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
-                 repo=$(echo 'console.log("${{ github.repository_owner }}".toLowerCase())' | node -)
-                 tags: ghcr.io/${repo}:${{ github.sha }}
+                 REPO=$(echo 'print("${{ github.repository_owner}}".lower())' | python3 -) >> 
+                 tags: ghcr.io/${{ env.REPO }}:${{ github.sha }}
       # ghcr.io/${{ github.repository_owner.lowercase }}/solar-system:${{ github.sha }}
       
     
