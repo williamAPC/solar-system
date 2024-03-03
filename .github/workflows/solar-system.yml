@@ -173,19 +173,19 @@ jobs:
 
         - name: downcase REPO
           run: |
-             echo "REPO=${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
-             echo "The value of REPO is: ${REPO}"
+             echo REPO=${GITHUB_REPOSITORY,,} >>${GITHUB_ENV}
+             echo The value of REPO is: ${REPO}
 
 
-        - name: Container registriesPush
-          uses: docker/Build-push-action@v4
-          with:
-               context: .
-               push: true
-               tags: |
-                 ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
-                 ghcr.io/"$repowner"/solar-system:${{ github.sha }}
-      # ghcr.io/${{ github.repository_owner.lowercase }}/solar-system:${{ github.sha }}
+      #   - name: Container registriesPush
+      #     uses: docker/Build-push-action@v4
+      #     with:
+      #          context: .
+      #          push: true
+      #          tags: |
+      #            ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
+      #            ghcr.io/"$repowner"/solar-system:${{ github.sha }}
+      # # ghcr.io/${{ github.repository_owner.lowercase }}/solar-system:${{ github.sha }}
       
     
 
