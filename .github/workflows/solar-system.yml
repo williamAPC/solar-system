@@ -167,8 +167,9 @@ jobs:
              
         - name: Lowercase Repository-owner as a environnement variable
           run: |
-             echo "repowner=console.log("${{ github.repository_owner }}".toLowerCase())" >> "$GITHUB_ENV"
+             echo "repowner=${{ github.repository_owner }}.toLowerCase()" >> "$GITHUB_ENV"
              echo $repowner
+             echo $GITHUB_ENV
 
 
         - name: Container registriesPush
